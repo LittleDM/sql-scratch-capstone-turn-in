@@ -1,0 +1,66 @@
+select *
+from quiz
+limit 5;
+
+select *
+from home_try_on
+limit 5;
+
+select *
+from purchase
+limit 5;
+
+select distinct count(quiz.user_id), home_try_on.user_id is not null as 'is_home_try_on' 
+from quiz 
+left join home_try_on 
+on quiz.user_id = home_try_on.user_id
+group by 2;
+
+select distinct count(quiz.user_id), home_try_on.user_id is not null as 'is_home_try_on', purchase.user_id is not null as 'is_purchase'
+from quiz left join home_try_on on quiz.user_id = home_try_on.user_id
+left join purchase
+on purchase.user_id = quiz.user_id
+where is_home_try_on is not 0
+group by 3;	
+
+select distinct count(quiz.user_id), home_try_on.user_id is not null as 'is_home_try_on', home_try_on.number_of_pairs, purchase.user_id is not null as 'is_purchase'
+from quiz left join home_try_on on quiz.user_id = home_try_on.user_id
+left join purchase
+on purchase.user_id = quiz.user_id
+where is_home_try_on is not 0
+group by 3;
+
+select distinct count(quiz.user_id), home_try_on.user_id is not null as 'is_home_try_on', home_try_on.number_of_pairs, purchase.user_id is not null as 'is_purchase'
+from quiz left join home_try_on on quiz.user_id = home_try_on.user_id
+left join purchase
+on purchase.user_id = quiz.user_id
+where is_purchase is not 0
+group by 3;
+
+select distinct count(quiz.user_id), home_try_on.user_id is not null as 'is_home_try_on', home_try_on.number_of_pairs, purchase.user_id is not null as 'is_purchase', purchase.model_name, purchase.style, purchase.color, purchase.price, count(quiz.user_id) * purchase.price AS Revenue
+from quiz left join home_try_on on quiz.user_id = home_try_on.user_id
+left join purchase
+on purchase.user_id = quiz.user_id
+where is_purchase is not 0
+group by 5;
+
+select distinct count(quiz.user_id), home_try_on.user_id is not null as 'is_home_try_on', home_try_on.number_of_pairs, purchase.user_id is not null as 'is_purchase', purchase.model_name, purchase.style, purchase.color
+from quiz left join home_try_on on quiz.user_id = home_try_on.user_id
+left join purchase
+on purchase.user_id = quiz.user_id
+where is_purchase is not 0
+group by 6;
+
+select distinct count(quiz.user_id), home_try_on.user_id is not null as 'is_home_try_on', home_try_on.number_of_pairs, purchase.user_id is not null as 'is_purchase', purchase.model_name, purchase.style, purchase.color, purchase.price, count(quiz.user_id) * purchase.price AS Revenue
+from quiz left join home_try_on on quiz.user_id = home_try_on.user_id
+left join purchase
+on purchase.user_id = quiz.user_id
+where is_purchase is not 0
+group by 7;
+
+select distinct count(quiz.user_id), home_try_on.user_id is not null as 'is_home_try_on', home_try_on.number_of_pairs, purchase.user_id is not null as 'is_purchase', purchase.model_name, purchase.style, purchase.color, purchase.price, count(quiz.user_id) * purchase.price AS Revenue
+from quiz left join home_try_on on quiz.user_id = home_try_on.user_id
+left join purchase
+on purchase.user_id = quiz.user_id
+where is_purchase is not 0
+group by 8; 
